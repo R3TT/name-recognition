@@ -1,0 +1,25 @@
+{
+  "name": "name-recognition",
+  "version": "1.0.3",
+  "description": "Library for finding all the (USA-centric) names in an arbitrary piece of text.",
+  "main": "./index.js",
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/R3TT/name-recognition.git",
+    "web": "https://github.com/R3TT/name-recognition"
+  },
+  "keywords": [
+    "name",
+    "recognition",
+    "ner",
+    "nlp"
+  ],
+  "author": "Rett Crocker <rett@rettcrocker.com> (http://zapgun.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
