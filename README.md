@@ -11,7 +11,8 @@ by Rett Crocker
 
 ```var nr = require( '../index' );
 var namesFound = nr.find( 'There are some names in this sentence: Dave Bowie, Fred Mercury, Michael Jagger.' );
-console.log( namesFound );```
+console.log( namesFound );
+```
 
 ## Release History
 
