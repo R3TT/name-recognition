@@ -8,15 +8,17 @@ var _ = require( 'lodash' );
 nr = {};
 nr.debug = false;
 
-nr.find = function ( txt, requireCapitalized, requireUnique )
+nr.find = function ( txt, config )
 {
+	var requireCapitalized = _.get( config, 'capitalized' );
+	var requireUnique = _.get( config, 'unique' );
 	var names = [];
-	var lines = nr.lines( txt );
-	_.each( lines, ( line, lineIdx ) =>
+	var splits = nr.splitOnCommonDivisions( txt );
+	_.each( splits, ( split, splitIdx ) =>
 	{
 		var firstName = null;
 		var gender = null;
-		var words = nr.words( line );
+		var words = nr.words( split );
 		var idx = null;
 
 		var lastNameMatchCheck = function ( possibleLastName, possibleLastNameIdx, pl )
@@ -29,9 +31,9 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 				var n = f + ' ' + possibleLastName;
 				var nLower = n.toLowerCase();
 				var unique = ( _.findIndex( names, { nameLowerCase : nLower } ) == -1 );
-				if ( requireCapitalized && capitalized )
+				if ( ! requireCapitalized || capitalized )
 				{
-					if ( requireUnique && unique )
+					if ( ! requireUnique || unique )
 					{
 						names.push(
 						{
@@ -41,7 +43,7 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 							position: 
 							{
 								row: possibleLastNameIdx - firstName.length,
-								column: lineIdx
+								column: splitIdx
 							},
 							name: n,
 							nameLowerCase: nLower,
@@ -117,9 +119,9 @@ nr.firstNameMatch = function ( w )
 	return gender;
 };
 
-nr.lines = function ( txt )
+nr.splitOnCommonDivisions = function ( txt )
 {
-	return txt.match( /[^\r\n]+/g );
+	return txt.match( /[^\n\r,.?!]+/g );
 };
 
 nr.words = function ( txt )
