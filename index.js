@@ -4,9 +4,9 @@ var aFirst = require( './lib/ambiguousNames' );
 var last = require( './lib/lastnames' );
 
 var _ = require( 'lodash' );
-var debug = false;
 
 nr = {};
+nr.debug = false;
 
 nr.find = function ( txt, requireCapitalized, requireUnique )
 {
@@ -21,7 +21,7 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 
 		var lastNameMatchCheck = function ( possibleLastName, possibleLastNameIdx, pl )
 		{
-			if ( debug ) console.log( '>> last ->', possibleLastName );
+			if ( nr.debug ) console.log( '>> last ->', possibleLastName );
 			if ( last.includes( pl ) )
 			{
 				var capitalized = ( nr.isCapitalized( possibleLastName ) && nr.isCapitalized( firstName ) );
@@ -47,7 +47,7 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 							nameLowerCase: nLower,
 							capitalized: capitalized
 						});
-						if ( debug ) console.log( '***', _.last( names ) );
+						if ( nr.debug ) console.log( '***', _.last( names ) );
 						return true;
 					}
 				}
@@ -66,7 +66,7 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 				{
 					firstName = [ word ];
 					gender = possibleGender;
-					if ( debug ) console.log( word, possibleGender );
+					if ( nr.debug ) console.log( '>> first ->', word, possibleGender );
 				} else {
 					firstName = null;
 				}
@@ -74,17 +74,17 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 				var possibleGender = nr.firstNameMatch( w );
 				if ( possibleGender )
 				{
-					if ( debug ) console.log( word, possibleGender );
+					if ( nr.debug ) console.log( '>> first ->', word, possibleGender );
 					firstName.push( word );
 				} else {
 
-					if ( debug ) console.log( '#1' );
+					if ( nr.debug ) console.log( '#1' );
 
 					if ( ! lastNameMatchCheck( word, wordIdx, w ) && firstName.length > 1 )
 					{
 						word = firstName.pop();
 						w = word.toLowerCase();
-						if ( debug ) console.log( '#2' );
+						if ( nr.debug ) console.log( '#2' );
 						lastNameMatchCheck( word, wordIdx - 1, w );
 					}
 					firstName = null;
@@ -92,11 +92,11 @@ nr.find = function ( txt, requireCapitalized, requireUnique )
 			}
 		});
 
-		if ( firstName )
+		if ( firstName && firstName.length > 1 )
 		{
 			word = firstName.pop();
 			w = word.toLowerCase();
-			if ( debug ) console.log( '#3' );
+			if ( nr.debug ) console.log( '#3' );
 			lastNameMatchCheck( word, idx - 1, w );
 		}
 	});
