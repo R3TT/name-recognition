@@ -9,7 +9,8 @@ by Rett Crocker
 
 ## Usage
 
-```var nr = require( 'name-recognition' );
+```
+var nr = require( 'name-recognition' );
 var txt = 'The county municipal building on Monroe Avenue is named for former County Executive Edwin Michaels and county-owned Allen park in Somers is named to memorialize former County Executive Alfred DelCampo. Edwin Michaels is currently retired and living in South Palmetto County.';
 var namesFound;
 namesFound = nr.find( txt );
