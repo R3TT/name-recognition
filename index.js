@@ -42,8 +42,8 @@ nr.find = function ( txt, config )
 							gender: gender,
 							position: 
 							{
-								row: possibleLastNameIdx - firstName.length,
-								column: splitIdx
+								word: possibleLastNameIdx - firstName.length,
+								wordGroup: splitIdx
 							},
 							name: n,
 							nameLowerCase: nLower,
