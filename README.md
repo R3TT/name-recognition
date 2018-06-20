@@ -24,9 +24,11 @@ namesFound = nr.find( txt, { capitalized : true, unique : true } );
 
 ## Release History
 
+* 2018.06.20 - version 1.0.7 
+  * Changed license dates
+* 2018.06.19 - version 1.0.6
+  * Adding to npm
 * 2018.06.14 - version 1.0.4
   * initial fixes
 * 2018.06.14 - version 1.0.1
   * original version
-* 2018.06.19
-  * Adding to npm
