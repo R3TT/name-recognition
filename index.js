@@ -118,11 +118,19 @@ nr.find = function ( txt, config )
 	return names;
 };
 
-nr.getTopNames = function ( arr, percent )
+nr.getTopNames = function ( obj, percent )
 {
-	console.log( percent );
-	var split = Math.floor( percent * arr.length );
-	return arr.slice( 0, split );
+	percent *= 100;
+	var arr = [];
+	_.each( obj, ( v, k ) =>
+	{
+		if ( v > percent )
+		{
+			return false;
+		}
+		arr.push( k );
+	});
+	return arr;
 };
 
 nr.firstNameMatch = function ( w )

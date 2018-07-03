@@ -24,6 +24,8 @@ namesFound = nr.find( txt, { capitalized : true, unique : true } );
 
 ## Release History
 
+* 2018.07.02 - version 1.1.3
+  * Finalized support for specifying the popularity of the names required 
 * 2018.07.02 - version 1.1.1
   * Added much larger library of names and ability to specify popularity requirements
 * 2018.06.20 - version 1.0.7 
