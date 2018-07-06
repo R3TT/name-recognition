@@ -17,6 +17,7 @@ namesFound = nr.find( txt );
 // returns 4 names
 // Edwin Michaels, Allen park, Alfred DelCampo, Edwin Michaels
 
+
 namesFound = nr.find( txt, { capitalized : true, unique : true } );
 // returns 2 names
 // Edwin Michaels, Alfred DelCampo
@@ -24,6 +25,8 @@ namesFound = nr.find( txt, { capitalized : true, unique : true } );
 
 ## Release History
 
+* 2018.07.02 - version 1.1.4
+  * Default to top 85% of names by occurence in population
 * 2018.07.02 - version 1.1.3
   * Finalized support for specifying the popularity of the names required 
 * 2018.07.02 - version 1.1.1
