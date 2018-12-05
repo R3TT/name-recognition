@@ -2,16 +2,16 @@ var nr = require('../index' );
 
 //var message = "My name is Matthew Crocker. Sometimes I go by Matt Crocker. My legal name is Matthew Witmer Crocker. Resume shows Matthew W. Crocker and cards Matthew W Crocker. My brothers are Michael Crocker, Rett Crocker (Rett E. Crocker), Gabe Crocker and Ian Jarosh. Rett is married to Kerry Crocker. My girlfriend is named Lauren N. Tranchita, otherwise known as Nicole Tranchita."
 
-//var message = "My name is Matthew Crocker one two three four five. Sometimes I go by Matt Crocker. My resume shows Matthew W. Crocker and cards Matthew W Crocker. My girlfriend is named Lauren N. Tranchita, but she goes by Nicole Tranchita. Does Matthew Crocker show twice? What about matthew Crocker?"
+var message = "My name is Matthew Crocker one two three four five. Sometimes I go by Matt Crocker. My resume shows Matthew W. Crocker and cards Matthew W Crocker. My girlfriend is named Lauren N. Tranchita, but she goes by Nicole Tranchita."
 
-var message = "The is a man named Matthew Crocker. His full name is actually Matthew Witmer Crocker, but you may also see him using the name Matt Crocker, Matthew W Crocker, Matthew W. Crocker, or Mattie Crocker, occasionally."
+//var message = "The is a man named Matthew Crocker. His full name is actually Matthew Witmer Crocker, but you may also see him using the name Matt Crocker, Matthew W Crocker, Matthew W. Crocker, or Mattie Crocker, occasionally."
 
-var namesFound = nr.find(message, { unique: true, capitalized: true, top: 0.85 });
+var namesFound = nr.find(message, { unique: true, capitalized: true, top: 0.9 });
 var num = 0;
 
 namesFound.forEach( function ( n, idx )
 {
-    //console.log( n.name );
+    console.log( n.name );
     switch(n.name)
     {
       case "Matthew Crocker":

@@ -49,7 +49,7 @@ nr.find = function ( txt, config )
 
 			if( !requireCapitalized || capitalized){
 				if(	!requireUnique || unique ){
-					console.log(fullName);
+					//console.log(fullName);
 					return {
 						first: firstName,
 						middle: middleInitial,
@@ -116,7 +116,7 @@ nr.find = function ( txt, config )
 					possibleLast = words[lastIndex];
 
 					if(isLastName(possibleLast, lastIndex)){
-						result = nameConfig(word, possibleMiddle, possibleLast, possibleGender, 0);
+						result = nameConfig(word, possibleMiddle, possibleLast, possibleGender, wordIdx);
 						if(result)
 							names.push(result);
 					}
@@ -127,16 +127,26 @@ nr.find = function ( txt, config )
 						possibleLast = words[lastIndex];
 
 						if(isLastName(possibleLast, lastIndex))	{
-							result = nameConfig(word, possibleMiddle, possibleLast, possibleGender, 0);
+							result = nameConfig(word, possibleMiddle, possibleLast, possibleGender, wordIdx);
 							if(result)
 								names.push(result);
 						}
 					}
 				}
 			}
-			else {	//Possible first name not detected
+/*			else if (isLastName(word, wordIdx) && wordIdx <= words.length-2){	//Possible first name not detected, check if the last name is first
+				possibleLast = word;
+				var possibleFirst = words[wordIdx + 1];
+				w = possibleFirst.toLowerCase();
 
-			}
+				possibleGender = nr.firstNameMatch(w);
+				if(possibleGender){
+					result = nameConfig(possibleFirst, possibleMiddle, possibleLast, possibleGender, wordIdx);
+					if(result){
+						names.push(result);
+					}
+				}
+			} */
 		});
 	});
 	return names;
