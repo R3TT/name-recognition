@@ -2,7 +2,7 @@ var nr = require('../index' );
 
 //var message = "My name is Matthew Crocker. Sometimes I go by Matt Crocker. My legal name is Matthew Witmer Crocker. Resume shows Matthew W. Crocker and cards Matthew W Crocker. My brothers are Michael Crocker, Rett Crocker (Rett E. Crocker), Gabe Crocker and Ian Jarosh. Rett is married to Kerry Crocker. My girlfriend is named Lauren N. Tranchita, otherwise known as Nicole Tranchita."
 
-var message = "My name is Matthew Crocker one two three four five. Sometimes I go by Matt Crocker. My resume shows Matthew W. Crocker and cards Matthew W Crocker. My girlfriend is named Lauren N. Tranchita, but she goes by Nicole Tranchita."
+var message = "My name is Matthew Crocker one two three four five. Sometimes I go by Matt Crocker. My resume shows Matthew W. Crocker and cards Matthew W Crocker. My legal name is Matthew Witmer Crocker, and my Dad's name is Charles Everett Crocker. My girlfriend is named Lauren N. Tranchita, but she goes by Nicole Tranchita."
 
 //var message = "The is a man named Matthew Crocker. His full name is actually Matthew Witmer Crocker, but you may also see him using the name Matt Crocker, Matthew W Crocker, Matthew W. Crocker, or Mattie Crocker, occasionally."
 
@@ -59,11 +59,17 @@ namesFound.forEach( function ( n, idx )
       case "Nicole Tranchita":
         num++;
         break;
+      case "Charles Everett Crocker":
+        num++;
+        break;
+      case "Matthew Witmer Crocker":
+        num++;
+        break;
       default:
         break;
     }
 });
-console.log(num + ' number of names found out of 6\n');
+console.log(num + ' number of names found out of 8\n');
 //console.log(num + ' number of names found out of 13\n');
 //console.log("The correct names are:\n Matthew Crocker\n Matt Crocker\n Matthew W. Crocker\n Matthew W Crocker\n Lauren N. Tranchita\n Nicole Tranchita")
 
