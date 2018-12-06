@@ -34,17 +34,21 @@ nr.find = function ( txt, config )
 	{
 		var words = nr.words( split );
 
-		var nameConfig = function(firstName, middleInitial, lastName, gender, index)
+		var nameConfig = function(firstName, middleName, lastName, gender, index)
 		{
 			var fullName;
-			if(middleInitial){
-				fullName = firstName + ' ' + middleInitial + ' ' + lastName;
+			var capitalized;
+
+			if(middleName){
+				fullName = firstName + ' ' + middleName + ' ' + lastName;
+				capitalized = ( nr.isCapitalized( lastName ) && nr.isCapitalized( firstName ) && nr.isCapitalized( middleName ));
 			}
 			else {
 				fullName = firstName + ' ' + lastName;
+				capitalized = ( nr.isCapitalized( lastName ) && nr.isCapitalized( firstName ));
 			}
 
-			var capitalized = ( nr.isCapitalized( lastName ) && nr.isCapitalized( firstName ) );
+
 			var unique = ( _.findIndex( names, { nameLowerCase : fullName.toLowerCase() } ) == -1 );
 
 			if( !requireCapitalized || capitalized){
@@ -52,7 +56,7 @@ nr.find = function ( txt, config )
 					//console.log(fullName);
 					return {
 						first: firstName,
-						middle: middleInitial,
+						middle: middleName,
 						last: lastName,
 						gender: gender,
 						position:
@@ -116,6 +120,13 @@ nr.find = function ( txt, config )
 					possibleLast = words[lastIndex];
 
 					if(isLastName(possibleLast, lastIndex)){
+						if(lastIndex < words.length-1){ //Checks for potential middle name
+							if(isLastName(words[lastIndex+1], lastIndex+1)){
+								possibleMiddle = possibleLast;
+								possibleLast = words[lastIndex+1];
+							}
+						}
+
 						result = nameConfig(word, possibleMiddle, possibleLast, possibleGender, wordIdx);
 						if(result)
 							names.push(result);
