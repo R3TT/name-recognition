@@ -19,7 +19,7 @@ var runTests = function ( p, x )
 	var contactCards = nr.find( strings.markup, { capitalized : true, unique : true, top : p } );
 	console.log( contactCards.length + ' names found out of 28 (' + x[ 2 ] + ' expected)' );
 	console.log( '--' );
-	console.log( '\n' );	
+	console.log( '\n' );
 };
 
 console.log( '\n' );
