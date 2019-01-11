@@ -25,6 +25,8 @@ namesFound = nr.find( txt, { capitalized : true, unique : true } );
 
 ## Release History
 
+* 2019.01.11 - version 1.2.1
+  * Merged changes to add support for initials (thanks https://github.com/MatthewCrocker7)
 * 2018.07.02 - version 1.1.4
   * Default to top 85% of names by occurence in population
 * 2018.07.02 - version 1.1.3
