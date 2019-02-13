@@ -7,6 +7,8 @@ var fFirst;
 var aFirst;
 var last;
 
+var cache = {};
+
 // RC: better first name source --> https://www.ssa.gov/OACT/babynames/limits.html
 // RC: better last name source --> https://www.census.gov/topics/population/genealogy/data.html
 
@@ -21,10 +23,23 @@ nr.find = function ( txt, config )
 	var requireUnique = _.get( config, 'unique' );
 	var top = _.get( config, 'top' );
 	if ( ! top ) { top = 0.85; }
-	mFirst = nr.getTopNames( mFirst_original, top );
-	fFirst = nr.getTopNames( fFirst_original, top );
-	aFirst = nr.getTopNames( aFirst_original, top );
-	last = nr.getTopNames( last_original, top );
+	if ( _.has( cache, top ) )
+	{
+		mFirst = cache[ top ].mFirst;
+		fFirst = cache[ top ].fFirst;
+		aFirst = cache[ top ].aFirst;
+		last = cache[ top ].last;
+	} else {
+		mFirst = nr.getTopNames( mFirst_original, top );
+		fFirst = nr.getTopNames( fFirst_original, top );
+		aFirst = nr.getTopNames( aFirst_original, top );
+		last = nr.getTopNames( last_original, top );
+		cache[ top ] = {};
+		cache[ top ].mFirst = mFirst;
+		cache[ top ].fFirst = fFirst;
+		cache[ top ].aFirst = aFirst;
+		cache[ top ].last = last;
+	}
 	var names = [];
 	var splits = nr.splitOnCommonDivisions( txt );
 
@@ -166,16 +181,7 @@ nr.find = function ( txt, config )
 nr.getTopNames = function ( obj, percent )
 {
 	percent *= 100;
-	var arr = [];
-	_.each( obj, ( v, k ) =>
-	{
-		if ( v > percent )
-		{
-			return false;
-		}
-		arr.push( k );
-	});
-	return arr;
+	return _.filter( Object.keys( obj ), k => obj[ k ] <= percent );
 };
 
 nr.firstNameMatch = function ( w )
