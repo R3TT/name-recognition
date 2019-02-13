@@ -25,6 +25,8 @@ namesFound = nr.find( txt, { capitalized : true, unique : true } );
 
 ## Release History
 
+* 2019.02.13 - version 1.3.1
+  * Speeding up top names and added caching
 * 2019.01.11 - version 1.2.1
   * Merged changes to add support for initials (thanks https://github.com/MatthewCrocker7)
 * 2018.07.02 - version 1.1.4
